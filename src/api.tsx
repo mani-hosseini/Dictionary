@@ -1,13 +1,13 @@
 import axios from "axios";
+import { WordData } from "./types";
 
-export async function getDictionary(word: string) {
+async function GetDictionary(word: string): Promise<WordData> {
     try {
-        const response = await axios.get(
-            `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
-        );
-        return response.data;
+        const { data } = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
+        return data[0];
     } catch (error) {
-        console.error("Error fetching data:", error);
-        return null;
+        throw new Error('Failed to fetch word data');
     }
 }
+
+export default GetDictionary;
