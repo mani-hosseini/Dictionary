@@ -1,5 +1,5 @@
 import axios from "axios";
-import { WordData } from "./types";
+import { WordData } from "./types.ts";
 
 async function GetDictionary(word: string): Promise<WordData> {
     try {
